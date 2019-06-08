@@ -2,29 +2,46 @@ package com.merve.kodia.entities;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "universities", schema = "kodia", catalog = "")
 public class UniversitiesEntity {
+
+
+    @Id
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "api_id")
     private int apiId;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "city")
     private String city;
+
+    @Column(name = "web_page")
     private String webPage;
+
+    @Column(name = "type")
     private String type;
-    private Timestamp foundedAt;
-    private Timestamp createdAt;
-    private Timestamp updatedAt;
+
+    @Column(name = "founded_at",columnDefinition = "DATETIME")
+    private Date foundedAt;
+
+    @Column(name = "created_at",columnDefinition = "DATETIME")
+    private Date createdAt;
+
+    @Column(name = "updated_at",columnDefinition = "DATETIME")
+    private Date updatedAt;
 
 
     @OneToMany(mappedBy = "university")
     private List<StudentsEntity> students;
 
-
-
-    @Id
-    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -33,8 +50,6 @@ public class UniversitiesEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "api_id")
     public int getApiId() {
         return apiId;
     }
@@ -43,8 +58,6 @@ public class UniversitiesEntity {
         this.apiId = apiId;
     }
 
-    @Basic
-    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -53,8 +66,6 @@ public class UniversitiesEntity {
         this.name = name;
     }
 
-    @Basic
-    @Column(name = "city")
     public String getCity() {
         return city;
     }
@@ -63,8 +74,6 @@ public class UniversitiesEntity {
         this.city = city;
     }
 
-    @Basic
-    @Column(name = "web_page")
     public String getWebPage() {
         return webPage;
     }
@@ -73,8 +82,6 @@ public class UniversitiesEntity {
         this.webPage = webPage;
     }
 
-    @Basic
-    @Column(name = "type")
     public String getType() {
         return type;
     }
@@ -83,40 +90,43 @@ public class UniversitiesEntity {
         this.type = type;
     }
 
-    @Basic
-    @Column(name = "founded_at")
-    public Timestamp getFoundedAt() {
+    public Date getFoundedAt() {
         return foundedAt;
     }
 
-    public void setFoundedAt(Timestamp foundedAt) {
+    public void setFoundedAt(Date foundedAt) {
         this.foundedAt = foundedAt;
     }
 
-    @Basic
-    @Column(name = "created_at")
-    public Timestamp getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
-    @Basic
-    @Column(name = "updated_at")
-    public Timestamp getUpdatedAt() {
+    public Date getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
+    public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public List<StudentsEntity> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<StudentsEntity> students) {
+        this.students = students;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
         UniversitiesEntity that = (UniversitiesEntity) o;
 
