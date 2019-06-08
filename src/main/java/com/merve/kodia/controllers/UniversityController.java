@@ -23,7 +23,7 @@ public class UniversityController {
         return ResponseEntity.ok(id);
     }
 
-    
+
 
 
 
