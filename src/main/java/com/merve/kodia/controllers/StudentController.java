@@ -89,9 +89,8 @@ public class StudentController {
             transaction = session.beginTransaction();
             JSONObject objStudent = new JSONObject(body);
 
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 String name = objStudent.optString("name", null);
-                Date startedAt = sdf.parse(objStudent.optString("started_at", null));
+                Date startedAt = (new SimpleDateFormat("yyyy-MM-dd")).parse(objStudent.optString("started_at", null));
                 int universityId = objStudent.optInt("university");
 
                 JSONArray arrError = new JSONArray();
@@ -191,8 +190,9 @@ public class StudentController {
                             university.setName(nameUni);
                             university.setType(typeUni);
                             university.setWebPage(webPageUni);
-
                             university.setApiId(universityId);
+
+                            session.saveOrUpdate(university);
 
                             break;
 
@@ -203,8 +203,6 @@ public class StudentController {
 
                 }
 
-
-                university.setApiId(universityId);
 
                 StudentsEntity student = new StudentsEntity();
                 student.setCreatedAt(Date.from(Instant.now()));
