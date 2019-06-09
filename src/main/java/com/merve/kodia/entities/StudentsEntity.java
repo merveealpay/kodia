@@ -11,6 +11,11 @@ import java.util.Date;
                 name = "allStudents",
                 query = "select * from students",
                 resultClass = StudentsEntity.class
+        ),
+        @NamedNativeQuery(
+                name = "studentById",
+                query = "select * from students where id=:id",
+                resultClass = StudentsEntity.class
         )
 
 })

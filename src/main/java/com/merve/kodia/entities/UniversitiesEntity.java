@@ -5,6 +5,22 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
+
+@NamedNativeQueries({
+
+        @NamedNativeQuery(
+                name = "allUniversities",
+                query = "select * from universities",
+                resultClass = UniversitiesEntity.class
+        ),
+        @NamedNativeQuery(
+                name = "universityById",
+                query = "select * from universities where id=:id",
+                resultClass = UniversitiesEntity.class
+        )
+
+})
+
 @Entity
 @Table(name = "universities", schema = "kodia", catalog = "")
 public class UniversitiesEntity {
